@@ -40,32 +40,44 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            StreamBuilder(
-                stream: _bloc.counter,
-                builder: (context, snapshot) {
-                  return Text(
-                    '${snapshot.data}',
-                    style: Theme.of(context).textTheme.display1,
-                  );
-                }),
-          ],
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _bloc.increment,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-    );
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'You have pushed the button this many times:',
+              ),
+              StreamBuilder(
+                  stream: _bloc.counter,
+                  builder: (context, snapshot) {
+                    return Text(
+                      '${snapshot.data}',
+                      style: Theme.of(context).textTheme.display1,
+                    );
+                  }),
+            ],
+          ),
+        ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FloatingActionButton(
+              onPressed: _bloc.increment,
+              tooltip: 'Increment',
+              child: Icon(Icons.add),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            FloatingActionButton(
+              onPressed: _bloc.decrement,
+              tooltip: 'Decrement',
+              child: Icon(Icons.remove),
+            ),
+          ],
+        ));
   }
 }

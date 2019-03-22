@@ -11,6 +11,10 @@ class CounterBloc implements BlocBase {
     _counter.sink.add(_current + 1);
   }
 
+  decrement() {
+    _counter.sink.add(_current - 1);
+  }
+
   @override
   void dispose() {
     _counter.close();
